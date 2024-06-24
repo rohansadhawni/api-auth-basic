@@ -41,7 +41,7 @@ Thumbs.db
 
 # .env files
 .env
-.env.*
+.env
 
 # Custom for specific projects
 # Add here other files that you want to ignore, e.g., .project, .idea, .vscode, etc.
