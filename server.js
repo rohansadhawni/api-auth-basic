@@ -32,6 +32,11 @@ db.connect((err) => {
 app.post('/register', async (req, res) => {
     const { username, password, email } = req.body;
 
+    // Validate input
+    if (!username || !password || !email) {
+        return res.status(400).json({ message: 'All fields are required', hostname: os.hostname() });
+    }
+
     // Check if username or email already exists
     db.query('SELECT * FROM users WHERE username = ? OR email = ?', [username, email], async (err, results) => {
         if (err) {
@@ -58,6 +63,11 @@ app.post('/register', async (req, res) => {
 // Login route
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
+
+    // Validate input
+    if (!username || !password) {
+        return res.status(400).json({ message: 'All fields are required', hostname: os.hostname() });
+    }
 
     // Check if the user exists
     db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
